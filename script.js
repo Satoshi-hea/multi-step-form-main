@@ -113,7 +113,11 @@ btnNext.addEventListener('click', () => {
 
   if (currentStep < 4) {
     currentStep++;
+    if (currentStep === 4) {
+      renderSummary();
+    }
     updateUI();
+  }
   } else if (currentStep === 4) {
     // Пользователь нажал Confirm на шаге 4 -> Показываем экран Thank You
     formSteps.forEach(step => step.classList.remove('active'));
@@ -214,3 +218,71 @@ addonCards.forEach(card => {
     }
   });
 });
+
+// ==================== ШАГ 4: ДИНАМИЧЕСКИЙ РАСЧЕТ И СВОДКА ====================
+
+// База данных цен для расчетов
+const pricingData = {
+  plans: {
+    arcade: { name: 'Arcade', monthly: 9, yearly: 90 },
+    advanced: { name: 'Advanced', monthly: 12, yearly: 120 },
+    pro: { name: 'Pro', monthly: 15, yearly: 150 }
+  },
+  addons: {
+    'addon-online': { name: 'Online service', monthly: 1, yearly: 10 },
+    'addon-storage': { name: 'Larger storage', monthly: 2, yearly: 20 },
+    'addon-profile': { name: 'Customizable profile', monthly: 2, yearly: 20 }
+  }
+};
+
+function renderSummary() {
+  const isYearly = billingToggle.checked;
+  const periodSuffix = isYearly ? '/yr' : '/mo';
+  const periodText = isYearly ? 'Yearly' : 'Monthly';
+
+  // 1. Определяем выбранный тариф
+  const selectedPlanInput = document.querySelector('input[name="plan"]:checked');
+  const planKey = selectedPlanInput ? selectedPlanInput.value : 'arcade';
+  const planInfo = pricingData.plans[planKey];
+  const planPrice = isYearly ? planInfo.yearly : planInfo.monthly;
+
+  // Заполняем название тарифа и цену в DOM
+  const summaryPlanName = document.getElementById('summary-plan-name');
+  const summaryPlanPrice = document.getElementById('summary-plan-price');
+  summaryPlanName.textContent = `${planInfo.name} (${periodText})`;
+  summaryPlanPrice.textContent = `$${planPrice}${periodSuffix}`;
+
+  // 2. Собираем выбранные аддоны
+  const summaryAddonsList = document.getElementById('summary-addons-list');
+  summaryAddonsList.innerHTML = ''; // Очищаем старый список
+  let addonsTotal = 0;
+
+  addonCards.forEach(card => {
+    const checkbox = card.querySelector('.addon-checkbox');
+    if (checkbox && checkbox.checked) {
+      const addonId = checkbox.id;
+      const addonInfo = pricingData.addons[addonId];
+      if (addonInfo) {
+        const addonPrice = isYearly ? addonInfo.yearly : addonInfo.monthly;
+        addonsTotal += addonPrice;
+
+        // Создаем строку для аддона
+        const row = document.createElement('div');
+        row.className = 'summary-addon-row';
+        row.innerHTML = `
+          <span class="addon-name-summary">${addonInfo.name}</span>
+          <span class="addon-price-summary">+$${addonPrice}${periodSuffix}</span>
+        `;
+        summaryAddonsList.appendChild(row);
+      }
+    }
+  });
+
+  // 3. Считаем Total
+  const grandTotal = planPrice + addonsTotal;
+  const totalLabel = document.getElementById('summary-total-label');
+  const totalPrice = document.getElementById('summary-total-price');
+
+  totalLabel.textContent = isYearly ? 'Total (per year)' : 'Total (per month)';
+  totalPrice.textContent = `$${grandTotal}${periodSuffix}`;
+}
