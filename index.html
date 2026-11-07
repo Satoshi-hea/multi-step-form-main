@@ -50,7 +50,7 @@
       <form id="multi-step-form" novalidate>
         
         <!-- STEP 1: Personal Info -->
-        <fieldset class="form-step" id="step-1">
+        <fieldset class="form-step active" id="step-1">
           <div class="step-header">
             <h1 class="step-heading">Personal info</h1>
             <p class="step-description">Please provide your name, email address, and phone number.</p>
@@ -135,7 +135,7 @@
         </fieldset>
 
         <!-- STEP 3: Add-ons -->
-        <fieldset class="form-step active" id="step-3">
+        <fieldset class="form-step" id="step-3">
           <div class="step-header">
             <h1 class="step-heading">Pick add-ons</h1>
             <p class="step-description">Add-ons help enhance your gaming experience.</p>
@@ -176,6 +176,56 @@
             </label>
           </div>
         </fieldset>
+
+        <!-- STEP 4: Summary -->
+        <fieldset class="form-step" id="step-4">
+          <div class="step-header">
+            <h1 class="step-heading">Finishing up</h1>
+            <p class="step-description">Double-check everything looks OK before confirming.</p>
+          </div>
+
+          <div class="summary-wrapper">
+            <div class="summary-card">
+              <!-- Основной выбранный тариф -->
+              <div class="summary-plan-row">
+                <div class="plan-info">
+                  <span class="selected-plan-title" id="summary-plan-name">Arcade (Monthly)</span>
+                  <button type="button" class="btn-change" id="btn-change-plan">Change</button>
+                </div>
+                <span class="plan-price-summary" id="summary-plan-price">$9/mo</span>
+              </div>
+
+              <hr class="summary-divider">
+
+              <!-- Список выбранных аддонов (будет наполняться через JS) -->
+              <div class="summary-addons-list" id="summary-addons-list">
+                <div class="summary-addon-row">
+                  <span class="addon-name-summary">Online service</span>
+                  <span class="addon-price-summary">+$1/mo</span>
+                </div>
+                <div class="summary-addon-row">
+                  <span class="addon-name-summary">Larger storage</span>
+                  <span class="addon-price-summary">+$2/mo</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Итоговая строка -->
+            <div class="summary-total-row">
+              <span class="total-label" id="summary-total-label">Total (per month)</span>
+              <span class="total-price" id="summary-total-price">+$12/mo</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- STEP 5: Thank You Screen (После отправки формы) -->
+        <div class="thank-you-screen hidden" id="thank-you-step">
+          <img src="./assets/images/icon-thank-you.svg" alt="Thank you checkmark" class="thank-you-icon">
+          <h2 class="thank-you-title">Thank you!</h2>
+          <p class="thank-you-text">
+            Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.
+          </p>
+        </div>
 
         <!-- Кнопки управления -->
         <div class="form-navigation">

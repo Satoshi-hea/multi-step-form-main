@@ -452,3 +452,140 @@ body {
   font-weight: 500;
   color: var(--purplish-blue);
 }
+
+/* ==================== STEP 4 STYLES ==================== */
+
+.summary-card {
+  background-color: var(--alabaster);
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.summary-plan-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.selected-plan-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--marine-blue);
+}
+
+.btn-change {
+  background: none;
+  border: none;
+  color: var(--cool-gray);
+  font-family: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  width: fit-content;
+}
+
+.btn-change:hover {
+  color: var(--purplish-blue);
+}
+
+.plan-price-summary {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--marine-blue);
+}
+
+.summary-divider {
+  border: none;
+  border-top: 1px solid var(--light-gray);
+  margin: 16px 0;
+}
+
+.summary-addons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-addon-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addon-name-summary {
+  font-size: 14px;
+  color: var(--cool-gray);
+}
+
+.addon-price-summary {
+  font-size: 14px;
+  color: var(--marine-blue);
+  font-weight: 500;
+}
+
+.summary-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.total-label {
+  font-size: 14px;
+  color: var(--cool-gray);
+}
+
+.total-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--purplish-blue);
+}
+
+/* ==================== STEP 5: THANK YOU ==================== */
+
+.thank-you-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 40px 20px;
+}
+
+.thank-you-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 32px;
+}
+
+.thank-you-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--marine-blue);
+  margin-bottom: 14px;
+}
+
+.thank-you-text {
+  font-size: 16px;
+  color: var(--cool-gray);
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+/* Состояние фиолетовой кнопки Confirm для шага 4 */
+.btn-next.btn-confirm {
+  background-color: var(--purplish-blue);
+}
+
+.btn-next.btn-confirm:hover {
+  background-color: hsl(243, 100%, 75%);
+}
