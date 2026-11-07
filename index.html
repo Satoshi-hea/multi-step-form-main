@@ -81,6 +81,59 @@
           </div>
         </fieldset>
 
+        <!-- STEP 2: Select Plan -->
+        <fieldset class="form-step" id="step-2">
+          <div class="step-header">
+            <h1 class="step-heading">Select your plan</h1>
+            <p class="step-description">You have the option of monthly or yearly billing.</p>
+          </div>
+
+          <div class="plans-container">
+            <!-- Arcade Card -->
+            <label class="plan-card selected" for="plan-arcade">
+              <input type="radio" name="plan" id="plan-arcade" value="arcade" checked>
+              <img src="./assets/images/icon-arcade.svg" alt="Arcade plan icon" class="plan-icon">
+              <div class="plan-details">
+                <span class="plan-name">Arcade</span>
+                <span class="plan-price" data-monthly="$9/mo" data-yearly="$90/yr">$9/mo</span>
+                <span class="plan-bonus hidden">2 months free</span>
+              </div>
+            </label>
+
+            <!-- Advanced Card -->
+            <label class="plan-card" for="plan-advanced">
+              <input type="radio" name="plan" id="plan-advanced" value="advanced">
+              <img src="./assets/images/icon-advanced.svg" alt="Advanced plan icon" class="plan-icon">
+              <div class="plan-details">
+                <span class="plan-name">Advanced</span>
+                <span class="plan-price" data-monthly="$12/mo" data-yearly="$120/yr">$12/mo</span>
+                <span class="plan-bonus hidden">2 months free</span>
+              </div>
+            </label>
+
+            <!-- Pro Card -->
+            <label class="plan-card" for="plan-pro">
+              <input type="radio" name="plan" id="plan-pro" value="pro">
+              <img src="./assets/images/icon-pro.svg" alt="Pro plan icon" class="plan-icon">
+              <div class="plan-details">
+                <span class="plan-name">Pro</span>
+                <span class="plan-price" data-monthly="$15/mo" data-yearly="$150/yr">$15/mo</span>
+                <span class="plan-bonus hidden">2 months free</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Billing Toggle (Monthly / Yearly) -->
+          <div class="billing-toggle-container">
+            <span class="billing-period active" id="monthly-label">Monthly</span>
+            <label class="toggle-switch" for="billing-checkbox">
+              <input type="checkbox" id="billing-checkbox" aria-label="Toggle billing duration">
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="billing-period" id="yearly-label">Yearly</span>
+          </div>
+        </fieldset>
+
         <!-- Кнопки управления -->
         <div class="form-navigation">
           <button type="button" class="btn btn-back hidden" id="btn-back">Go Back</button>

@@ -240,3 +240,135 @@ body {
 .hidden {
   display: none !important;
 }
+/* ==================== STEP 2 STYLES ==================== */
+
+.plans-container {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.plan-card {
+  flex: 1;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  padding: 20px 16px 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Скрываем стандартный radio button */
+.plan-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.plan-card:hover {
+  border-color: var(--purplish-blue);
+}
+
+/* Выбранная карточка тарифа */
+.plan-card.selected {
+  border-color: var(--purplish-blue);
+  background-color: var(--alabaster);
+}
+
+.plan-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 40px;
+}
+
+.plan-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.plan-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--marine-blue);
+}
+
+.plan-price {
+  font-size: 14px;
+  color: var(--cool-gray);
+}
+
+.plan-bonus {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--marine-blue);
+}
+
+/* Контейнер переключателя Monthly/Yearly */
+.billing-toggle-container {
+  background-color: var(--alabaster);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 14px;
+}
+
+.billing-period {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cool-gray);
+  transition: color 0.2s ease;
+}
+
+.billing-period.active {
+  color: var(--marine-blue);
+}
+
+/* Стилизация тоггл-переключателя */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--marine-blue);
+  border-radius: 20px;
+  transition: 0.3s ease;
+}
+
+.toggle-slider::before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--white);
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+/* Перемещение кружка при активации Yearly */
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(18px);
+}
