@@ -138,3 +138,79 @@ if (btnChangePlan) {
     updateUI();
   });
 }
+
+// ==================== ШАГ 2: ВЫБОР ТАРИФА И ПЕРИОДА ====================
+
+const planCards = document.querySelectorAll('.plan-card');
+const billingToggle = document.getElementById('billing-checkbox');
+const monthlyLabel = document.getElementById('monthly-label');
+const yearlyLabel = document.getElementById('yearly-label');
+
+// Выбор карточки тарифа при клике
+planCards.forEach(card => {
+  card.addEventListener('click', () => {
+    planCards.forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    const radio = card.querySelector('input[type="radio"]');
+    if (radio) radio.checked = true;
+  });
+});
+
+// Переключение периода оплаты (Monthly / Yearly)
+billingToggle.addEventListener('change', () => {
+  const isYearly = billingToggle.checked;
+
+  if (isYearly) {
+    yearlyLabel.classList.add('active');
+    monthlyLabel.classList.remove('active');
+  } else {
+    monthlyLabel.classList.add('active');
+    yearlyLabel.classList.remove('active');
+  }
+
+  // Обновляем цены на карточках тарифов и надпись "2 months free"
+  planCards.forEach(card => {
+    const priceEl = card.querySelector('.plan-price');
+    const bonusEl = card.querySelector('.plan-bonus');
+
+    if (isYearly) {
+      priceEl.textContent = priceEl.getAttribute('data-yearly');
+      bonusEl.classList.remove('hidden');
+    } else {
+      priceEl.textContent = priceEl.getAttribute('data-monthly');
+      bonusEl.classList.add('hidden');
+    }
+  });
+
+  // Обновляем ценники аддонов на шаге 3
+  const addonCards = document.querySelectorAll('.addon-card');
+  addonCards.forEach(card => {
+    const addonPriceEl = card.querySelector('.addon-price');
+    if (isYearly) {
+      addonPriceEl.textContent = addonPriceEl.getAttribute('data-yearly');
+    } else {
+      addonPriceEl.textContent = addonPriceEl.getAttribute('data-monthly');
+    }
+  });
+});
+
+// ==================== ШАГ 3: ВЫБОР ДОПОЛНИТЕЛЬНЫХ УСЛУГ ====================
+
+const addonCards = document.querySelectorAll('.addon-card');
+
+addonCards.forEach(card => {
+  const checkbox = card.querySelector('.addon-checkbox');
+
+  // Клик по всей карточке переключает чекбокс и подсветку
+  card.addEventListener('click', (e) => {
+    if (e.target !== checkbox) {
+      checkbox.checked = !checkbox.checked;
+    }
+
+    if (checkbox.checked) {
+      card.classList.add('selected');
+    } else {
+      card.classList.remove('selected');
+    }
+  });
+});
